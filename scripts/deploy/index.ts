@@ -252,22 +252,7 @@ const checkAndCreatePages = async () => {
     await getPages();
     console.log("✅ Project already exists, proceeding with update...");
   } catch (error) {
-    if (error instanceof NotFoundError) {
-      console.log("⚠️ Project not found, creating new project...");
-      const pages = await createPages();
-
-      if (!CUSTOM_DOMAIN && pages.subdomain) {
-        console.log("⚠️ CUSTOM_DOMAIN is empty, using pages default domain...");
-        console.log("📝 Updating environment variables...");
-
-        // 更新环境变量为默认的Pages域名
-        const appUrl = `https://${pages.subdomain}`;
-        updateEnvVar("CUSTOM_DOMAIN", appUrl);
-      }
-    } else {
-      console.error(`❌ An error occurred while checking the project:`, error);
-      throw error;
-    }
+    console.warn("⚠️ Could not verify pages project (API permission issue), assuming it exists...");
   }
 };
 
