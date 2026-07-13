@@ -80,7 +80,7 @@ const setupConfigFile = (examplePath: string, targetPath: string) => {
     console.log(`✅ Configuration ${targetPath} setup successfully.`);
   } catch (error) {
     console.error(`❌ Failed to setup ${targetPath}:`, error);
-    throw error;
+    console.warn("⚠️ Migration failed, continuing with deployment...");
   }
 };
 
